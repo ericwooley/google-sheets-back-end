@@ -6,6 +6,7 @@
   ],
   "rules": {
     "semicolon": [true, "never"],
-    "no-console": false
+    "no-console": false,
+    "object-literal-sort-keys": false
   }
 }
