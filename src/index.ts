@@ -1,4 +1,5 @@
 import { stringify } from "qs"
+import { ISheetData } from "./interfaces"
 export interface ISheetOptions {
   accessToken?: string
   makeRequest?: typeof fetch
@@ -16,6 +17,7 @@ export interface ICreatDBOptions {
   schema: ISchema
 }
 export interface IDBManger {
+  id: string
   getEntity: <T>(entityName: string) => IEntity<T>
 }
 export interface IEntity<T> {
@@ -50,7 +52,7 @@ export default function initSheets({
       method
     })
 
-  const getSheet = async (sheetId: string) => {
+  const getSheet = async (sheetId: string): Promise<ISheetData> => {
     const result = await request({
       url: `${sheetId}?${stringify({ includeGridData: true })}`
     })
@@ -59,7 +61,7 @@ export default function initSheets({
 
   const copySheet = async (sheetId: string, title: string) => {
     const sheet = await getSheet(sheetId)
-    if (sheet && sheet.body) {
+    if (sheet && sheet) {
       return request({
         body: {
           properties: {
@@ -72,7 +74,7 @@ export default function initSheets({
     }
   }
 
-  const dbManagement = (schema: ISchema, sheetData: any): IDBManger => {
+  const dbManagement = (schema: ISchema, sheetData: ISheetData): IDBManger => {
     const entityLookup = Object.keys(schema).reduce(
       (db, key) => {
         db[key] = {
@@ -86,6 +88,7 @@ export default function initSheets({
       {} as { [key: string]: IEntity<any> }
     )
     return {
+      id: sheetData.spreadsheetId,
       getEntity: <T>(key: string) => {
         if (!entityLookup[key]) throw new Error("no entity: " + key)
         return entityLookup[key] as IEntity<T>
@@ -98,8 +101,8 @@ export default function initSheets({
     return loadDB("", options)
   }
   const loadDB = async (sheetId: string, options: ICreatDBOptions) => {
-    // load sheet
-    return dbManagement(options.schema, "")
+    const spreadSheet = await getSheet(sheetId)
+    return dbManagement(options.schema, spreadSheet)
   }
 
   return {
