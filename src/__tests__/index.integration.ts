@@ -48,6 +48,21 @@ describe("Google Sheets As a db", () => {
       expect(sheets).toMatchSnapshot("returned-api")
     })
   })
+  describe("auth error", () => {
+    it("should throw an error if a request failes", async () => {
+      const sheets = initSheets({
+        accessToken: "<TEST>"
+      })
+      try {
+        await sheets.createDB({
+          title: "wahtever",
+          schema: wineSchema
+        })
+      } catch (e) {
+        expect(e.message).toMatchSnapshot()
+      }
+    })
+  })
   describe("Getting a sheet", () => {
     let sheets = initSheets({
       accessToken: TOKEN
