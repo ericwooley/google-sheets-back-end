@@ -23,7 +23,11 @@ module.exports = {
   setupFiles: ["<rootDir>/setupJest.js"],
   testMatch: ["**/__tests__/**/*.test.{t,j}s?(x)"],
   testPathIgnorePatterns: ["<rootDir>/(node_modules|lib|es|dist)"],
-  collectCoverageFrom: ["src/**/*.{t,j}s?(x)", "!src/**/*.d.ts"],
+  collectCoverageFrom: [
+    "src/**/*.{t,j}s?(x)",
+    "!src/**/*.d.ts",
+    "!src/**/__tests__/**/*"
+  ],
   moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
   mapCoverage: true,
   globals: {

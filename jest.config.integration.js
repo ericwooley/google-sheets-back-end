@@ -2,7 +2,7 @@ const config = require("./jest.config")
 
 module.exports = {
   ...config,
-  testMatch: [...config.testMatch, "**/__tests__/**/*.integration.{t,j}s?(x)"]
+  testMatch: ["**/__tests__/**/*.integration.{t,j}s?(x)"]
 }
 if (!process.env.AUTH_TOKEN) {
   try {

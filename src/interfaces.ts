@@ -6,6 +6,7 @@ export interface ISheetData {
   spreadsheetUrl: string
   developerMetadata: IDeveloperMetadata[]
 }
+
 export interface ISpreadSheetProperties {
   title: string
   locale: string
@@ -14,6 +15,7 @@ export interface ISpreadSheetProperties {
   defaultFormat: any
   iterativeCalculationSettings: any
 }
+
 export interface IDeveloperMetadata {
   metadataId: number
   metadataKey: string
@@ -21,24 +23,28 @@ export interface IDeveloperMetadata {
   location: any
   visibility: string | number
 }
+
 export interface INamedRange {
   namedRangeId: string
   name: string
   range: IGridRange
 }
+
 export interface IExtendedValue {
   // Union field value can be only one of the following:
-  numberValue: number
-  stringValue: string
-  boolValue: boolean
-  formulaValue: string
-  errorValue: IErrorValue
+  numberValue?: number
+  stringValue?: string
+  boolValue?: boolean
+  formulaValue?: string
+  errorValue?: IErrorValue
   // End of list of possible types for union field value.
 }
+
 export interface IErrorValue {
   type: ErrorType
   message: string
 }
+
 export enum ErrorType {
   ERROR_TYPE_UNSPECIFIED, // The default error type, do not use this.
   ERROR, // Corresponds to the #ERROR! error.
@@ -53,33 +59,37 @@ export enum ErrorType {
 }
 
 export interface ICellData {
-  userEnteredValue: IExtendedValue
-  effectiveValue: IExtendedValue
-  formattedValue: string
-  userEnteredFormat: ICellFormat
-  effectiveFormat: ICellFormat
-  hyperlink: string
-  note: string
-  textFormatRuns: ITextFormatRun[]
-  dataValidation: IDataValidationRule
-  pivotTable: IPivotTable
+  userEnteredValue?: IExtendedValue
+  effectiveValue?: IExtendedValue
+  formattedValue?: string
+  userEnteredFormat?: ICellFormat
+  effectiveFormat?: ICellFormat
+  hyperlink?: string
+  note?: string
+  textFormatRuns?: ITextFormatRun[]
+  dataValidation?: IDataValidationRule
+  pivotTable?: IPivotTable
 }
+
 export interface IRowData {
   values: ICellData[]
 }
+
 export interface IDimensionProperties {
   hiddenByFilter: boolean
   hiddenByUser: boolean
   pixelSize: number
   developerMetadata: IDeveloperMetadata[]
 }
+
 export interface IGridData {
-  startRow: number
-  startColumn: number
+  startRow?: number
+  startColumn?: number
   rowData: IRowData[]
   rowMetadata: IDimensionProperties[]
   columnMetadata: IDimensionProperties[]
 }
+
 export interface IGridRange {
   sheetId: number
   startRowIndex: number
@@ -88,118 +98,133 @@ export interface IGridRange {
   endColumnIndex: number
 }
 export interface ISheetProperties {
-  sheetId: number
+  sheetId?: number
   title: string
   index: number
   sheetType: SheetType
   gridProperties: IGridProperties
-  hidden: boolean
-  tabColor: IColor
-  rightToLeft: boolean
+  hidden?: boolean
+  tabColor?: IColor
+  rightToLeft?: boolean
 }
+
 export interface IColor {
-  red: number
-  green: number
-  blue: number
-  alpha: number
+  red?: number
+  green?: number
+  blue?: number
+  alpha?: number
 }
+
 export enum SheetType {
-  SHEET_TYPE_UNSPECIFIED, // Default value, do not use.
-  GRID, // The sheet is a grid.
-  OBJECT // The sheet has no grid and instead has an object like a chart or image.
+  SHEET_TYPE_UNSPECIFIED = "SHEET_TYPE_UNSPECIFIED", // Default value, do not use.
+  GRID = "GRID", // The sheet is a grid.
+  OBJECT = "OBJECT" // The sheet has no grid and instead has an object like a chart or image.
 }
 
 export interface IGridProperties {
   rowCount: number
   columnCount: number
-  frozenRowCount: number
-  frozenColumnCount: number
-  hideGridlines: boolean
+  frozenRowCount?: number
+  frozenColumnCount?: number
+  hideGridlines?: boolean
 }
+
 export interface ISheet {
   properties: ISheetProperties
   data: IGridData[]
-  merges: IGridRange[]
-  conditionalFormats: IConditionalFormatRule[]
-  filterViews: IFilterView[]
-  protectedRanges: any[]
-  basicFilter: any
-  charts: any[]
-  bandedRanges: any[]
-  developerMetadata: IDeveloperMetadata[]
+  merges?: IGridRange[]
+  conditionalFormats?: IConditionalFormatRule[]
+  filterViews?: IFilterView[]
+  protectedRanges?: any[]
+  basicFilter?: any
+  charts?: any[]
+  bandedRanges?: any[]
+  developerMetadata?: IDeveloperMetadata[]
 }
 
 export interface ICellFormat {
-  numberFormat: INumberFormat
-  backgroundColor: IColor
-  borders: IBorders
-  padding: IPadding
-  horizontalAlignment: string
-  verticalAlignment: string
-  wrapStrategy: string
-  textDirection: string
-  textFormat: ITextFormat
-  hyperlinkDisplayType: any
-  textRotation: ITextRotation
+  numberFormat?: INumberFormat
+  backgroundColor?: IColor
+  borders?: IBorders
+  padding?: IPadding
+  horizontalAlignment?: string
+  verticalAlignment?: string
+  wrapStrategy?: string
+  textDirection?: string
+  textFormat?: ITextFormat
+  hyperlinkDisplayType?: any
+  textRotation?: ITextRotation
 }
+
 export interface ITextRotation {
   angle: number
   vertical: boolean
 }
+
 export interface IPadding {
   top: number
   right: number
   bottom: number
   left: number
 }
+
 export interface IBorders {
   top: IBorder
   bottom: IBorder
   left: IBorder
   right: IBorder
 }
+
 export interface IBorder {
   style: any
   width: number
   color: IColor
 }
+
 export interface INumberFormat {
   type: string | number
   pattern: string
 }
+
 export interface ITextFormat {
-  foregroundColor: IColor
-  fontFamily: string
-  fontSize: number
-  bold: boolean
-  italic: boolean
-  strikethrough: boolean
-  underline: boolean
+  foregroundColor?: IColor
+  fontFamily?: string
+  fontSize?: number
+  bold?: boolean
+  italic?: boolean
+  strikethrough?: boolean
+  underline?: boolean
 }
+
 export interface ITextFormatRun {
   startIndex: number
   format: ITextFormat
 }
+
 export interface ITextRotation {
   // Union field type can be only one of the following:
   angle: number
   vertical: boolean
   // End of list of possible types for union field type.
 }
+
 export interface IDataValidationRule {
   condition: IBooleanCondition
   inputMessage: string
   strict: boolean
   showCustomUi: boolean
 }
+
 export interface IBooleanCondition {
   type: string | number
   values: IConditionValue
 }
+
 export interface IConditionValue {
   relativeDate: string | number
   userEnteredValue: string
 }
+
 export interface IPivotTable {
   source: IGridRange
   rows: any[]
@@ -208,6 +233,7 @@ export interface IPivotTable {
   values: any[]
   valueLayout: string | number
 }
+
 export interface IConditionalFormatRule {
   ranges: IGridRange[]
 
@@ -215,6 +241,7 @@ export interface IConditionalFormatRule {
   booleanRule: any
   gradientRule: any
 }
+
 export interface IFilterView {
   filterViewId: number
   title: string

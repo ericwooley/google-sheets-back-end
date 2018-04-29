@@ -17076,6 +17076,7 @@ exports[`returned-api 1`] = `
 Object {
   "copySheet": [Function],
   "createDB": [Function],
+  "createSheet": [Function],
   "getSheet": [Function],
   "loadDB": [Function],
 }
