@@ -1,3 +1,4 @@
+import { LOG_LEVELS } from "./logger"
 export interface ISheetData {
   spreadsheetId: string
   properties: ISpreadSheetProperties
@@ -6,7 +7,45 @@ export interface ISheetData {
   spreadsheetUrl: string
   developerMetadata: IDeveloperMetadata[]
 }
+export interface IRequestOptions {
+  baseUrl?: string
+  url?: string
+  method?: "GET" | "PUT" | "POST" | "PATCH"
+  body?: Object // tslint:disable-line
+}
+export interface IHaveSheets {
+  sheets: ISheet[]
+}
+export interface ISheetOptions {
+  accessToken: string
+  makeRequest?: typeof fetch
+  logLevel?: LOG_LEVELS
+}
 
+export type EntityTypes = "string" | "number" | "date"
+export interface ISchemaEntity {
+  type: EntityTypes
+  validate?: (value: any) => string
+}
+export interface ISchema {
+  [key: string]: { [key: string]: ISchemaEntity }
+}
+export interface ICreateDBOptions {
+  schema: ISchema
+  title: string
+}
+export interface IDBManger {
+  id: string
+  getEntity: <T>(entityName: string) => IEntity<T>
+}
+export interface IEntity<T> {
+  _raw: () => ISheet
+  create: (entityFeilds: any) => Promise<T>
+  read: (query: any) => Promise<T>
+  update: (entityFeilds: any, query: any) => Promise<T>
+  delete: (query: any) => Promise<string[]>
+}
+export type IBaseRequest<T> = (options?: IRequestOptions) => Promise<T>
 export interface ISpreadSheetProperties {
   title: string
   locale: string

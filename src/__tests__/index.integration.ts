@@ -1,7 +1,8 @@
 // @jest-environment browser
 import * as fs from "fs"
 import { join } from "path"
-import initSheets, { IHaveSheets, removeSheetJunk } from ".."
+import initSheets, { removeSheetJunk } from ".."
+import { IHaveSheets } from "../interfaces"
 import wineSchema from "./mocks/wineSchema"
 
 const TOKEN: string = process.env.AUTH_TOKEN || ""
