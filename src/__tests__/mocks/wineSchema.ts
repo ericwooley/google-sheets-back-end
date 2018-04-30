@@ -1,4 +1,4 @@
-import { ISchema } from "../../"
+import { ISchema } from "../../interfaces"
 const wineEntity: ISchema = {
   wine: {
     id: {

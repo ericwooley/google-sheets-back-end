@@ -23,12 +23,16 @@ export interface ISheetOptions {
 }
 
 export type EntityTypes = "string" | "number" | "date"
+
 export interface ISchemaEntity {
+  [key: string]: ISchemaAttribute
+}
+export interface ISchemaAttribute {
   type: EntityTypes
   validate?: (value: any) => string
 }
 export interface ISchema {
-  [key: string]: { [key: string]: ISchemaEntity }
+  [key: string]: ISchemaEntity
 }
 export interface ICreateDBOptions {
   schema: ISchema
@@ -288,4 +292,64 @@ export interface IFilterView {
   namedRangeId: string
   sortSpecs: any
   criteria: any
+}
+
+export interface ISheetBatchUpdateRequest {
+  addBanding?: {} // TODO: create interface for AddBandingRequest
+  addChart?: {} // TODO: create interface for AddChartRequest
+  addConditionalFormatRule?: {} // TODO: create interface for AddConditionalFormatRuleRequest
+  addFilterView?: {} // TODO: create interface for AddFilterViewRequest
+  addNamedRange?: {} // TODO: create interface for AddNamedRangeRequest
+  addProtectedRange?: {} // TODO: create interface for AddProtectedRangeRequest
+  addSheet?: {} // TODO: create interface for AddSheetRequest
+  appendCells?: {
+    sheetId: number
+    rows: IRowData[]
+    fields: string
+  } // TODO: create interface for AppendCellsRequest
+  appendDimension?: {} // TODO: create interface for AppendDimensionRequest
+  autoFill?: {} // TODO: create interface for AutoFillRequest
+  autoResizeDimensions?: {} // TODO: create interface for AutoResizeDimensionsRequest
+  clearBasicFilter?: {} // TODO: create interface for ClearBasicFilterRequest
+  copyPaste?: {} // TODO: create interface for CopyPasteRequest
+  createDeveloperMetadata?: {} // TODO: create interface for CreateDeveloperMetadataRequest
+  cutPaste?: {} // TODO: create interface for CutPasteRequest
+  deleteBanding?: {} // TODO: create interface for DeleteBandingRequest
+  deleteConditionalFormatRule?: {} // TODO: create interface for DeleteConditionalFormatRuleRequest
+  deleteDeveloperMetadata?: {} // TODO: create interface for DeleteDeveloperMetadataRequest
+  deleteDimension?: {} // TODO: create interface for DeleteDimensionRequest
+  deleteEmbeddedObject?: {} // TODO: create interface for DeleteEmbeddedObjectRequest
+  deleteFilterView?: {} // TODO: create interface for DeleteFilterViewRequest
+  deleteNamedRange?: {} // TODO: create interface for DeleteNamedRangeRequest
+  deleteProtectedRange?: {} // TODO: create interface for DeleteProtectedRangeRequest
+  deleteRange?: {} // TODO: create interface for DeleteRangeRequest
+  deleteSheet?: {} // TODO: create interface for DeleteSheetRequest
+  duplicateFilterView?: {} // TODO: create interface for DuplicateFilterViewRequest
+  duplicateSheet?: {} // TODO: create interface for DuplicateSheetRequest
+  findReplace?: {} // TODO: create interface for FindReplaceRequest
+  insertDimension?: {} // TODO: create interface for InsertDimensionRequest
+  insertRange?: {} // TODO: create interface for InsertRangeRequest
+  mergeCells?: {} // TODO: create interface for MergeCellsRequest
+  moveDimension?: {} // TODO: create interface for MoveDimensionRequest
+  pasteData?: {} // TODO: create interface for PasteDataRequest
+  randomizeRange?: {} // TODO: create interface for RandomizeRangeRequest
+  repeatCell?: {} // TODO: create interface for RepeatCellRequest
+  setBasicFilter?: {} // TODO: create interface for SetBasicFilterRequest
+  setDataValidation?: {} // TODO: create interface for SetDataValidationRequest
+  sortRange?: {} // TODO: create interface for SortRangeRequest
+  textToColumns?: {} // TODO: create interface for TextToColumnsRequest
+  unmergeCells?: {} // TODO: create interface for UnmergeCellsRequest
+  updateBanding?: {} // TODO: create interface for UpdateBandingRequest
+  updateBorders?: {} // TODO: create interface for UpdateBordersRequest
+  updateCells?: {} // TODO: create interface for UpdateCellsRequest
+  updateChartSpec?: {} // TODO: create interface for UpdateChartSpecRequest
+  updateConditionalFormatRule?: {} // TODO: create interface for UpdateConditionalFormatRuleRequest
+  updateDeveloperMetadata?: {} // TODO: create interface for UpdateDeveloperMetadataRequest
+  updateDimensionProperties?: {} // TODO: create interface for UpdateDimensionPropertiesRequest
+  updateEmbeddedObjectPosition?: {} // TODO: create interface for UpdateEmbeddedObjectPositionRequest
+  updateFilterView?: {} // TODO: create interface for UpdateFilterViewRequest
+  updateNamedRange?: {} // TODO: create interface for UpdateNamedRangeRequest
+  updateProtectedRange?: {} // TODO: create interface for UpdateProtectedRangeRequest
+  updateSheetProperties?: {} // TODO: create interface for UpdateSheetPropertiesRequest
+  updateSpreadsheetProperties?: {} // TODO: create interface for UpdateSpreadsheetPropertiesRequest
 }
