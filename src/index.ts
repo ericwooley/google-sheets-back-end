@@ -36,7 +36,7 @@ export default function initSheets({
     options: { schema: ISchema }
   ): Promise<IDBManger> => {
     const spreadSheet = await getSheet(sheetId)
-    return dbManagementFactory(options.schema, spreadSheet)
+    return dbManagementFactory(options.schema, spreadSheet, request)
   }
 
   return {
