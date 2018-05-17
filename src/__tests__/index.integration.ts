@@ -2,7 +2,7 @@
 import * as fs from "fs"
 import { join } from "path"
 import initSheets, { removeSheetJunk } from ".."
-import { IHaveSheets } from "../interfaces"
+import { IDBManger, IHaveSheets } from "../interfaces"
 import wineSchema from "./mocks/wineSchema"
 
 const TOKEN: string = process.env.AUTH_TOKEN || ""
@@ -95,6 +95,34 @@ describe("Google Sheets As a db", () => {
         expect(
           makeSheetDataSerializable({ sheets: [db.getEntity("wine")._raw()] })
         ).toMatchSnapshot()
+      })
+    })
+    describe("creating rows", () => {
+      let db: IDBManger
+      beforeEach(async () => {
+        db = await sheets.createDB({
+          title: "test-sheet" + Date.now(),
+          schema: wineSchema
+        })
+      })
+      it("should reject invalid rows", async () => {
+        expect.assertions(1)
+        if (db) {
+          const wineEntity = db.getEntity<{
+            id: string
+            name: string
+            vintage: string
+          }>("wine")
+          try {
+            await wineEntity.create({
+              id: "12",
+              name: "",
+              vintage: "2012"
+            })
+          } catch (e) {
+            expect(e).toMatchSnapshot()
+          }
+        }
       })
     })
   })

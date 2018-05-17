@@ -8,7 +8,13 @@ const wineEntity: ISchema = {
 
     name: {
       type: "string",
-      validate: (value: string) => ""
+      validate: (value: string) => {
+        console.log("testing name", value)
+        if (!value) {
+          return "Name is required"
+        }
+        return ""
+      }
     },
     vintage: {
       type: "string",

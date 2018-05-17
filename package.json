@@ -4,8 +4,7 @@
   "description": "Boilerplate for TypeScript 2.0 libraries",
   "author": "Max Davidson <davidsonmax@gmail.com>",
   "license": "MIT",
-  "repository":
-    "git+https://github.com/maxdavidson/typescript-library-boilerplate.git",
+  "repository": "git+https://github.com/maxdavidson/typescript-library-boilerplate.git",
   "main": "lib/index.js",
   "module": "es/index.js",
   "browser": "dist/bundle.js",
@@ -14,17 +13,14 @@
     "build": "npm run build:lib & npm run build:umd",
     "build:lib": "tsc --outDir lib --module commonjs",
     "build:es": "tsc --outDir es --module es2015",
-    "build:umd":
-      "npm run build:es && rollup --config && dts-bundle --name dist/bundle --main es --outputAsModuleFolder",
+    "build:umd": "npm run build:es && rollup --config && dts-bundle --name dist/bundle --main es --outputAsModuleFolder",
     "clean": "rimraf dist es lib coverage",
     "typecheck": "tsc --noEmit",
     "lint": "tslint --project tsconfig.json --type-check --format stylish",
     "test": "jest --env=jsdom --config=./jest.config.js",
     "test:watch": "yarn test --watch",
-    "test:int":
-      "jest --env=jsdom --coverage --config=./jest.config.integration.js",
-    "test:updateMocks":
-      "UPDATE_MOCKS=true yarn test --coverage --config=./jest.config.integration.js",
+    "test:int": "jest --env=jsdom --coverage --config=./jest.config.integration.js",
+    "test:updateMocks": "UPDATE_MOCKS=true yarn test --coverage --config=./jest.config.integration.js",
     "prepublishOnly": "npm run build",
     "prebuild": "npm run clean",
     "postbuild": "rimraf {lib,es}/**/__tests__",
@@ -32,8 +28,17 @@
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },
-  "keywords": ["typescript", "lib", "library", "boilerplate"],
-  "files": ["lib", "es", "dist"],
+  "keywords": [
+    "typescript",
+    "lib",
+    "library",
+    "boilerplate"
+  ],
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
   "dependencies": {
     "@types/isomorphic-fetch": "^0.0.34",
     "@types/node": "^8.0.0",
@@ -48,7 +53,7 @@
     "@types/qs": "^6.5.1",
     "async-prompt": "^1.0.1",
     "dts-bundle": "^0.7.2",
-    "jest": "^20.0.0",
+    "jest": "^22.4.3",
     "pascal-case": "^2.0.1",
     "prompt-sync": "^4.1.6",
     "rimraf": "^2.6.1",

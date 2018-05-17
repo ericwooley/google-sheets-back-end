@@ -1020,9 +1020,11 @@ Object {
 }
 `;
 
+exports[`Google Sheets As a db Using as a database creating rows should reject invalid rows 1`] = `[Error: Validation Error: Name is required]`;
+
 exports[`Google Sheets As a db auth error should throw an error if a request failes 1`] = `"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."`;
 
-exports[`returned-api 1`] = `
+exports[`Google Sheets As a db initializing as a database should initialize: returned-api 1`] = `
 Object {
   "copySheet": [Function],
   "createDB": [Function],

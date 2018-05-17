@@ -12,7 +12,12 @@ export default function entityFactory<T>(
   return {
     _raw: () => sheet,
     create: async (entity: T) => {
-      // TODO: Validate Rows with schemaEntity Validation
+      Object.keys(schema).forEach(key => {
+        if (schema[key] && schema[key].validate) {
+          const result = schema[key].validate(entity[key])
+          if (result) throw new Error("Validation Error: " + result)
+        }
+      })
       // TODO: Use sheet request to create rows
       return Promise.resolve({} as any)
     },
