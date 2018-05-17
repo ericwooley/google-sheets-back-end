@@ -22,7 +22,7 @@ export interface ISheetOptions {
   logLevel?: LOG_LEVELS
 }
 
-export type EntityTypes = "string" | "number" | "date"
+export type EntityTypes = "string" | "number" | "date" | "reference"
 
 export interface ISchemaEntity {
   [key: string]: ISchemaAttribute
@@ -30,6 +30,7 @@ export interface ISchemaEntity {
 export interface ISchemaAttribute {
   type: EntityTypes
   validate?: (value: any) => string
+  entity?: string
 }
 export interface ISchema {
   [key: string]: ISchemaEntity

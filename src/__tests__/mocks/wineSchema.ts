@@ -37,6 +37,21 @@ const wineEntity: ISchema = {
     drinkDate: {
       type: "string",
       validate: (value: string) => ""
+    },
+    cellar: {
+      type: "reference",
+      validate: (value: string) => "",
+      entity: "cellar"
+    }
+  },
+  cellar: {
+    id: {
+      type: "string",
+      validate: (value: string) => ""
+    },
+    name: {
+      type: "string",
+      validate: (value: string) => ""
     }
   }
 }

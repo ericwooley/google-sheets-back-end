@@ -990,6 +990,15 @@ Object {
                     "stringValue": "drinkDate",
                   },
                 },
+                Object {
+                  "effectiveValue": Object {
+                    "stringValue": "cellar",
+                  },
+                  "formattedValue": "cellar",
+                  "userEnteredValue": Object {
+                    "stringValue": "cellar",
+                  },
+                },
               ],
             },
           ],

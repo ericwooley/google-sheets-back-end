@@ -7,8 +7,6 @@ import {
   IDBManger,
   IHaveSheets,
   ISchema,
-  ISheet,
-  ISheetData,
   ISheetOptions
 } from "./interfaces"
 import logFactory, { LOG_LEVELS } from "./logger"

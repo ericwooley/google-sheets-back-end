@@ -21,7 +21,8 @@
     "lint": "tslint --project tsconfig.json --type-check --format stylish",
     "test": "jest --env=jsdom --config=./jest.config.js",
     "test:watch": "yarn test --watch",
-    "test:int": "yarn test --coverage --config=./jest.config.integration.js",
+    "test:int":
+      "jest --env=jsdom --coverage --config=./jest.config.integration.js",
     "test:updateMocks":
       "UPDATE_MOCKS=true yarn test --coverage --config=./jest.config.integration.js",
     "prepublishOnly": "npm run build",
